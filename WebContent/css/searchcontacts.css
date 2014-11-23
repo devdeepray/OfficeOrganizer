@@ -1,0 +1,62 @@
+
+
+#menuwrapper{
+	table-layout: fixed;
+	width:100%;
+}
+
+/* We remove the margin, padding, and list style of UL and LI components */
+#menuwrapper ul, #menuwrapper ul li{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+/* We apply background color and border bottom white and width to 150px */
+#menuwrapper ul li{
+    background-color:#D45A2A;
+    width:100%;
+    cursor:pointer;
+    box-shadow: 3px 3px 5px #A42A0A;
+}
+
+/* We apply the background hover color when user hover the mouse over of the li component */
+#menuwrapper ul li:hover{
+    background-color:#FF6B30;
+    position:relative;
+}
+
+/* We apply the link style */
+#menuwrapper ul li a{
+    padding: 1%;
+    color:#ffffff;
+    display:inline-block;
+    text-decoration:none;
+}
+
+/**** SECOND LEVEL MENU ****/
+/* We make the position to absolute for flyout menu and hidden the ul until the user hover the parent li item */
+#menuwrapper ul li ul{
+    position:absolute;
+    display:none;
+    box-shadow: 3px 3px 5px #040A0A;
+    }
+
+/* When user has hovered the li item, we show the ul list by applying display:block, note: 150px is the individual menu width.  */
+#menuwrapper ul li:hover ul{
+    left:50%;
+    top:50%;
+    display:block;
+}
+
+/* we apply different background color to 2nd level menu items*/
+#menuwrapper ul li ul li{
+    background-color:#cae25a;
+}
+
+/* We change the background color for the level 2 submenu when hovering the menu */
+#menuwrapper ul li:hover ul li:hover{
+    background-color:#b1b536;
+    box-shadow: 0px 0px 0px #000000;
+}
+

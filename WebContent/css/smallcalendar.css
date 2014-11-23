@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+
+.smallCalendar {
+	margin: 0;
+}
+
+.smallCalendar table{
+	border-collapse: collapse;
+	layout: fixed;
+    width: 100%;
+    height: 87.5%;
+}
+
+.smallCalendar td{
+	text-align: center;
+	font-size: 80%;
+}
+
+.smallCalendar #numcell{
+	width: 14%;
+	table-layout: fixed;
+	height: 12.5%;
+	text-align: center;
+}
+
+.smallCalendar #cal{
+	width:100%;
+}
+
+.smallCalendar #monthyear
+{
+	width:100%;
+	height: 12.5%;
+	background-color:teal;
+	text-align:center;
+	font-size: 100%;
+	float:left;
+}
+
+.smallCalendar #daysofweek
+{
+	width:100%;
+	height: 12.5%;
+	text-align:center;
+}
+
+.smallCalendar #daylabel
+{
+	width:14%;
+	float:left;
+}

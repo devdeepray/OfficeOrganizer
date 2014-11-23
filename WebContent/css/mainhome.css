@@ -1,0 +1,239 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	margin: 0 auto;
+	padding: 0;
+	height: 100%;
+	background-color: #96E0FF;
+}
+
+#fullpage {
+	position: fixed !important;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+#titout{
+	width: 100%;
+	height: 10%;
+}
+#tit {
+	position: relative;
+	width: 98%;
+	height: 80%;
+	top: 20%;
+	left: 1%;
+	background-color: #33CFFF;
+	font-size: 7vh;
+	text-align: center;
+	box-shadow: 10px 10px 20px #4F5965;
+	overflow: hidden;
+	line-height: 100%;
+}
+
+#tittext {
+}
+
+#bod {
+	width: 100%;
+	height: 90%;
+}
+
+#leftsection {
+	float: left;
+	width: 80%;
+	height: 100%;
+}
+
+#leftbar {
+	float: left;
+	width: 25%;
+	height: 100%;
+}
+
+
+
+
+#leftbartop {
+	width: 90%;
+	height: 60%;
+	position: relative;
+	top: 5%;
+	left: 5%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background-color: #FFA985;
+	box-shadow: 8px 8px 16px #6F5945;
+}
+
+#leftbarbot {
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	left: 5%;
+	top: 10%;
+	width: 90%;
+	height: 25%;
+	background-color: #00C267;
+	box-shadow: 8px 8px 16px #305247;
+}
+#midbarout{
+	width: 75%;
+	height: 100%;
+	float: left;
+}
+#midbar {
+	position: relative;
+	width: 96%;
+	height: 90%;
+	top: 5%;
+	left: 2%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	box-shadow: 8px 8px 16px #305247;
+}
+
+#rightbar {
+	float: left;
+	width: 20%;
+	height: 100%;
+}
+
+#rightbartop {
+	width: 90%;
+	height: 60%;
+	position: relative;
+	top: 5%;
+	left: 5%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background-color: #FFA985;
+	box-shadow: 8px 8px 16px #6F5945;
+}
+
+#rightbarbot {
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	left: 5%;
+	top: 10%;
+	width: 90%;
+	height: 25%;
+	box-shadow: 8px 8px 16px #305247;
+	
+	font-size: 80%;
+}
+
+#bigCalendarBox.bigCalendar {
+	width: 100%;
+	height: 90%;
+	
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#bigCalendarTabLab.bigCalendar {
+	width: 100%;
+	height: 5%;
+	vertical-align:middle;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#bigCalendarNav.bigCalendar {
+	width: 100%;
+	height: 5%;
+	background-color: #B073FF;
+	overflow: hidden;
+	text-align: center;
+	display:inline-block; vertical-align:middle;
+}
+
+
+
+
+
+#smallCalendarBox {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.nooverflow {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#rblabel{
+	width:100%;
+	height:20%;
+}
+#rbcontent{
+	width:100%;
+	height:80%;
+}
+
+
+
+
+#inbox{
+	width:100%;
+	height:100%;
+	
+	display: block;
+	overflow: auto;
+}
+.inbox_col {
+	background-color:#FFDA33;
+}
+
+#sent{
+	width:100%;
+	height:100%;
+	
+	overflow: auto;
+	display:none;
+}
+.sent_col{
+	
+	background-color:#F5FF33;
+}
+
+#sendmess{
+	width:100%;
+	height:100%;
+	display:none;
+}
+.sendmess_col{
+		background-color:#ff8000;
+}
+
+#download{
+	width:100%;
+	height:100%;
+
+	display: none;
+}
+.download_col{
+	background-color:#3BFFDB;
+	
+}
+#upload{
+	width:100%;
+	height:100%;
+	display:none;
+}
+.upload_col{
+		background-color:#B1FF33;
+}
+
+.rblabelelem {
+	float:left;
+	width:20%;
+	height: 100%;
+	text-align:center;
+}

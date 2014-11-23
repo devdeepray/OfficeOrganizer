@@ -1,0 +1,7 @@
+Click on contact menu - chat and view contact details
+Add contact form
+-> Adds a request. Other user needs to approve.
+
+Notification tool : Upcoming memo, appointments, pending approvals for contact and appointments
+Chat box
+Files storage.

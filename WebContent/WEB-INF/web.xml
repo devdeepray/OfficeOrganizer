@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>OfficeOrganizer</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ 
+  <servlet>
+    <description></description>
+    <display-name>LoginAuth</display-name>
+    <servlet-name>LoginAuth</servlet-name>
+    <servlet-class>wooBackend.LoginAuth</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginAuth</servlet-name>
+    <url-pattern>/LoginAuth</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+    <description></description>
+    <display-name>DisplayCalendar</display-name>
+    <servlet-name>DisplayCalendar</servlet-name>
+    <servlet-class>wooBackend.DisplayCalendar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayCalendar</servlet-name>
+    <url-pattern>/DisplayCalendar</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+    <description></description>
+    <display-name>ManageContacts</display-name>
+    <servlet-name>ManageContacts</servlet-name>
+    <servlet-class>wooBackend.ManageContacts</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageContacts</servlet-name>
+    <url-pattern>/ManageContacts</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ManageAppointments</display-name>
+    <servlet-name>ManageAppointments</servlet-name>
+    <servlet-class>wooBackend.ManageAppointments</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageAppointments</servlet-name>
+    <url-pattern>/ManageAppointments</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ManageFiles</display-name>
+    <servlet-name>ManageFiles</servlet-name>
+    <servlet-class>wooBackend.ManageFiles</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageFiles</servlet-name>
+    <url-pattern>/ManageFiles</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ManageMessages</display-name>
+    <servlet-name>ManageMessages</servlet-name>
+    <servlet-class>wooBackend.ManageMessages</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageMessages</servlet-name>
+    <url-pattern>/ManageMessages</url-pattern>
+  </servlet-mapping>
+</web-app>
