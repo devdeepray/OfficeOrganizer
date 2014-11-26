@@ -27,12 +27,9 @@ public class ManageFiles   extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-//    	String dbUser = "pratik";
-//    	String dbPass = "";
-//    	String dbURL = "jdbc:postgresql://localhost/app_project";
-    	String dbUser = "postgres";
-    	String dbPass = "Scand1nav1an$s";
-    	String dbURL = "jdbc:postgresql://localhost/officeorganizer";
+		String dbUser = Settings.dbUser;
+		String dbPass = Settings.dbPass;
+		String dbURL = Settings.dbURL;
     	
     	try {
     		Class.forName("org.postgresql.Driver");
@@ -56,6 +53,16 @@ public class ManageFiles   extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+    protected void finalize() throws Throwable  
+    {  
+        try { dbConn.close(); } 
+        catch (SQLException e) { 
+            e.printStackTrace();
+        }
+        super.finalize();  
+    }  
 	
 	boolean fetchFileList(HttpServletRequest request, HttpServletResponse response, String userId) throws IOException {
 		String queryStr = "select file_name from all_files where user_id = ?;";

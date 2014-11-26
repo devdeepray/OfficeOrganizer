@@ -60,14 +60,31 @@ function renderRecentContacts () {
 }
 
 
+function deleteContact(arg)
+{
+	$.ajax({
+		async: false,
+	    url     : "ManageContacts",
+	    type    : "POST",
+	    data    : "operation=delete&user_id="+sess_uid+"&password="+sess_pass+"&contact_id=" + arg
+	});
+	renderRecentContacts ();
+}
+
+function openChatWindow(arg)
+{
+	rbTabShow("sendmess");
+	document.getElementById("sendmessidbox").value=arg;
+}
 function renderContacts (json_obj) {
 	var contacts_list = '<table id="menuwrapper">';
 	
 	for (var i = 0; i < json_obj.length; i++) {
 		contacts_list += '<tr><td> <ul><li><a href="#">' + json_obj[i].name + ' &#9662;</a> \
-		<ul> <li><a href="#" >Details</a></li> <li><a href="#" onclick=\
+		<ul> <li><a href="#" onclick=\
 		"setViewUidAs('+ json_obj[i].uid +')">View \
-		Calendar</a></li><li><a href="#">Chat</a></li> </ul> </li></ul></td></tr>';
+		Calendar</a></li><li><a href="#" onclick="openChatWindow(\''+json_obj[i].uid+':'+json_obj[i].name+'\')">Chat</a></li> 	<li><a href="#" onclick="deleteContact('+json_obj[i].uid+')">Delete</a></li></ul> </li>\
+		</ul></td></tr>';
 //		contacts_list += '<tr><td>' + json_obj[i] + '</td></tr>';
 	}
 	contacts_list += '</table>';

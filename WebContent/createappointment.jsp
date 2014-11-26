@@ -22,6 +22,7 @@
 				margin: 0 auto;
 				padding: 0;
 				height: 100%;
+				background-color: #96E0FF;
 			}
 			
 			#fullpage {
@@ -39,7 +40,7 @@
 				background-color: #33CFFF;
 				font-size: 200%;
 				text-align: center;
-				box-shadow: 4px 4px 2px #4F5965;
+				box-shadow: 10px 10px 20px #4F5965;
 				overflow: hidden;
 			}
 			
@@ -59,7 +60,7 @@
 				<div id="tit">
 					<div id="tittext">Web office organizer V1.0</div>
 				</div>
-				<div id="apptForm">
+				<div id="apptForm" style="position: relative; top: 2%;">
 					<form id="appointmentForm" action="ManageAppointments" method="POST">
 						<ul style="list-style: none;">
 						
@@ -133,5 +134,4 @@
 			<br>
 		</div>
 	</body>
-
 </html>

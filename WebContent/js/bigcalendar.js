@@ -52,10 +52,10 @@ function bc_render(startDate)
 
 	var navBarData = '<DIV class="bigCalendar" id="navbar" style="height:100%">\
 						<TABLE style="width:100%; height:100%; "><TR>\
-					<TD ><a href="#" onclick="bc_renderPrev()">Prev week</a></TD>\
+					<TD ><a href="#"  onclick="bc_renderPrev()">Prev week</a></TD>\
 					<TD ><a href="#" onclick="setViewUidAs('+sess_uid+')">My calendar</A></TD>\
 					<TD >Current calender: '+bc_CURRENT_USER_NAME+'</TD>\
-					<TD style="text-align:right;"><a href="#" onclick="bc_renderNext()">Next week</a></TD>\
+					<TD ><a href="#" onclick="bc_renderNext()">Next week</a></TD>\
 				</DIV>';
 	document.getElementById("bigCalendarNav").innerHTML = navBarData;
 	
@@ -106,7 +106,7 @@ function bc_render(startDate)
 				{
 					var mode = 'lt';
 					if(tsid%4<2) mode = 'dk';
-					data += '<TD class="bigCalendar" id="'+mode+'blankcell"></TD>';
+					data += '<TD class="bigCalendar" id="'+mode+'blankcell"><a style="display:block; width:100%; height:100%;" href="#" onclick="showNewAppointment(\''+(date.getMonth()+1)+'-'+date.getDate()+'-'+date.getFullYear()+'\','+tsid+')">&nbsp;</a></TD>';
 				}
 			}
 			else

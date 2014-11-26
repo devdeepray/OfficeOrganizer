@@ -7,11 +7,23 @@
 		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
 		<script type="text/javascript" src="./js/jquery-ui.js"></script>
 		<script type="text/javascript">
-			<%-- <%				
-				out.println("var sess_uid = " + (String) session.getAttribute("user_id") + ";");
-				out.println("var sess_pass = " + (String) session.getAttribute("password") + ";");
-			%> --%>
-			
+		
+		
+			function getQueryVariable(variable) {
+				  var query = window.location.search.substring(1);
+				  var vars = query.split("&");
+				  for (var i=0;i<vars.length;i++) {
+				    var pair = vars[i].split("=");
+				    if (pair[0] == variable) {
+				      return pair[1];
+				    }
+				  } 
+				  alert('Query Variable ' + variable + ' not found');
+				}
+
+			var sess_uid = getQueryVariable("sess_uid");
+			var sess_pass = getQueryVariable("sess_pass");
+			var currContacts = 1;
 			function bindAutoComplete() {	
 				$( ".inputContacts" ).autocomplete({
 					search: function (){},
@@ -46,7 +58,7 @@
 			    var maxContacts = 50;
 			    var wrapper = $("#contacts");
 			    var addButton = $("#addNewContacts");
-			    var currContacts = 0;
+			    
 			    
 			    bindAutoComplete();
 			    $("#user_id").val(sess_uid);
@@ -63,6 +75,14 @@
 			        }
 			    });
 			});	
+			
+			function submitForm() {
+				$.post('ManageContacts', $('#appointmentForm').serialize());
+				setInterval(window.close, 2000);
+				//window.close();
+			}
+			
+			
 		</script>
 		
 		<div id="tot_div" style="width:80%;margin-left:20%;margin-right:20%">
@@ -82,11 +102,11 @@
 							</li>
 							
 							<li class="buttons">
-								<input type="hidden" name="form_id" value="893660" />    
-								<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+								<!-- <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" /> -->
+								<button type="button"  onclick="submitForm()">Submit</button>
 							</li>
 						</ul>
-						<input id="contactCount" type="hidden" name="contactCount"/>
+						<input id="contactCount" type="hidden" name="contactCount" value="1"/>
 						<input id="operation" type="hidden" name="operation" value="add"/>
 						<input id="user_id" type="hidden" name="user_id"/>
 						<input id="password" type="hidden" name="password"/>

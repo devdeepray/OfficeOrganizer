@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+font-family: arial, helvetica;
 	margin: 0 auto;
 	padding: 0;
 	height: 100%;
@@ -9,12 +9,14 @@ body {
 }
 
 #fullpage {
-	position: fixed !important;
+	/*position: fixed !important;*/
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	min-width: 1200px;
+	min-height: 600px;
 }
 
 #titout{
@@ -24,15 +26,17 @@ body {
 #tit {
 	position: relative;
 	width: 98%;
-	height: 80%;
+	height: 66px;
 	top: 20%;
 	left: 1%;
 	background-color: #33CFFF;
-	font-size: 7vh;
+	font-size: 60px;
 	text-align: center;
 	box-shadow: 10px 10px 20px #4F5965;
 	overflow: hidden;
 	line-height: 100%;
+	
+	color: #004D85;
 }
 
 #tittext {
@@ -111,8 +115,9 @@ body {
 	left: 5%;
 	overflow-x: hidden;
 	overflow-y: hidden;
-	background-color: #FFA985;
 	box-shadow: 8px 8px 16px #6F5945;
+	
+	font-size: 80%;
 }
 
 #rightbarbot {
@@ -139,6 +144,7 @@ body {
 #bigCalendarTabLab.bigCalendar {
 	width: 100%;
 	height: 5%;
+	min-height: 35px;
 	vertical-align:middle;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -147,6 +153,7 @@ body {
 #bigCalendarNav.bigCalendar {
 	width: 100%;
 	height: 5%;
+	min-height: 35px;
 	background-color: #B073FF;
 	overflow: hidden;
 	text-align: center;
@@ -168,14 +175,7 @@ body {
 	white-space: nowrap;
 }
 
-#rblabel{
-	width:100%;
-	height:20%;
-}
-#rbcontent{
-	width:100%;
-	height:80%;
-}
+
 
 
 
@@ -206,7 +206,22 @@ body {
 #sendmess{
 	width:100%;
 	height:100%;
+	
 	display:none;
+	text-align:center;
+	overflow-y: auto;
+}
+
+#sendmess input[type=text]{
+	width:90%;
+	position:relative;
+	margin-top:5%;
+}
+
+#sendmessmessbox{
+	position: relative;
+	width: 90%;
+	 resize: vertical;
 }
 .sendmess_col{
 		background-color:#ff8000;
@@ -236,4 +251,73 @@ body {
 	width:20%;
 	height: 100%;
 	text-align:center;
+}
+
+
+
+#rblabel{
+	width:100%;
+	height:13%;
+}
+#rbcontent{
+	width:100%;
+	height:87%;
+}
+
+/* END RIGHT BOTTOM BOX CSS */
+
+
+/* BEGIN RIGHT TOP BOX CSS */
+
+#appointments{
+	width:100%;
+	height:100%;
+	
+	display: block;
+	overflow: auto;
+}
+.appointments_col {
+	background-color:#FFDA33;
+}
+
+#pending{
+	width:100%;
+	height:100%;
+	
+	overflow: auto;
+	display:none;
+}
+.pending_col{
+	
+	background-color:#F5FF33;
+}
+
+#memo{
+	width:100%;
+	height:100%;
+	display:none;
+}
+.memo_col{
+		background-color:#ff8000;
+}
+
+
+.rtlabelelem {
+	float:left;
+	width:33%;
+	height: 100%;
+	text-align:center;
+}
+
+#rtlabel{
+	width:100%;
+	height:5%;
+}
+#rtcontent{
+	width:100%;
+	height:95%;
+}
+
+#apptForm{
+	background-color: teal;
 }

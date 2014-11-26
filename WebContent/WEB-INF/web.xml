@@ -75,4 +75,15 @@
     <servlet-name>ManageMessages</servlet-name>
     <url-pattern>/ManageMessages</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <display-name>ManageMemos</display-name>
+    <servlet-name>ManageMemos</servlet-name>
+    <servlet-class>wooBackend.ManageMemos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageMemos</servlet-name>
+    <url-pattern>/ManageMemos</url-pattern>
+  </servlet-mapping>
 </web-app>

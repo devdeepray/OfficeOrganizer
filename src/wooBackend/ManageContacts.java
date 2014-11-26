@@ -22,12 +22,9 @@ public class ManageContacts extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-//    	String dbUser = "pratik";
-//    	String dbPass = "";
-//    	String dbURL = "jdbc:postgresql://localhost/app_project";
-    	String dbUser = "postgres";
-    	String dbPass = "Scand1nav1an$s";
-    	String dbURL = "jdbc:postgresql://localhost/officeorganizer";
+		String dbUser = Settings.dbUser;
+		String dbPass = Settings.dbPass;
+		String dbURL = Settings.dbURL;
     	
     	try {
     		Class.forName("org.postgresql.Driver");
@@ -41,6 +38,16 @@ public class ManageContacts extends HttpServlet {
 			e.printStackTrace();
 		}	
     }
+	
+	@Override
+    protected void finalize() throws Throwable  
+    {  
+        try { dbConn.close(); } 
+        catch (SQLException e) { 
+            e.printStackTrace();
+        }
+        super.finalize();  
+    }  
 	
 	@Override
 	public void destroy() {
@@ -117,6 +124,52 @@ public class ManageContacts extends HttpServlet {
 		return false;
 	}
 	
+	boolean getContactInfo (HttpServletRequest request, HttpServletResponse response, String userId) throws IOException {
+		/* 
+		 * Request is assumed to have 
+		 * 	contact_id
+		 */
+		
+		String contactId = request.getParameter("contact_id");
+		if (contactId == null || contactId.equals("")) {
+			return true;
+		}
+		
+		String queryStr = "select * from contacts as X, all_users as Y where X.contact_id = Y.user_id and X.user_id = ? and X.contact_id = ?;";
+		try {
+			PreparedStatement queryStmt = dbConn.prepareStatement(queryStr);
+			queryStmt.setString(1, userId);
+			queryStmt.setString(1, contactId);
+			ResultSet rs = queryStmt.executeQuery();
+			
+			rs.next();
+			String name = rs.getString("name");
+			if (rs.wasNull()) {
+				return true;
+			}
+			String address = rs.getString("address");
+			String email = rs.getString("email");
+			String phone = rs.getString("phone");
+			String dob = rs.getDate("date_of_birth").toString();
+			JSONObject contact = new JSONObject();
+
+			if(name != null) contact.put("name", name);
+			if(email != null) contact.put("email", email);
+			if(phone != null) contact.put("phone", phone);
+			if(dob != null) contact.put("dob", dob);
+			if(address != null) contact.put("address", address);
+
+			PrintWriter pw = response.getWriter();
+			pw.print(contact);
+			pw.flush();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return true;
+		}
+		return false;
+	}
+	
 	boolean recentContacts (HttpServletRequest request, HttpServletResponse response, String userId) throws IOException {
 		String queryStr = "select Y.user_id, Y.name from contacts as X, all_users as Y where X.user_id = ? and X.contact_id = Y.user_id order by X.access_frequency desc limit 10;";
 		try {
@@ -151,6 +204,21 @@ public class ManageContacts extends HttpServlet {
 			rs.next();
 			pw.print(rs.getString(1));
 			pw.flush();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return true;
+		}
+		return false;
+	}
+	
+	boolean deleteContact(HttpServletRequest request, HttpServletResponse response, String userId) throws IOException {
+		String queryStr = "delete from contacts where user_id = ? and contact_id = ?";
+		try {
+			PreparedStatement queryStmt = dbConn.prepareStatement(queryStr);
+			queryStmt.setString(1, userId);
+			queryStmt.setString(2, request.getParameter("contact_id"));
+			queryStmt.executeUpdate();
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -194,37 +262,6 @@ public class ManageContacts extends HttpServlet {
 		return false;
 	}
 
-	boolean searchContactsAppt (HttpServletRequest request, HttpServletResponse response, String userId) throws IOException {
-		/* Request is assumed to have the following parameters in addition to those mentioned earlier
-		 * search_query:
-		 */
-		
-		String searchQuery = request.getParameter("search_query");
-		if (searchQuery == null || searchQuery.equals("")) {
-			return recentContacts(request, response, userId);
-		}
-
-		String queryStr = "select Y.user_id, Y.name from contacts as X, all_users as Y where X.user_id = ? and X.contact_id = Y.user_id and Y.name ilike '%" + searchQuery + "%' order by X.access_frequency;";
-		PreparedStatement queryStmt;
-		try {
-			queryStmt = dbConn.prepareStatement(queryStr);
-			queryStmt.setString(1, userId);
-			
-			ResultSet rs = queryStmt.executeQuery();
-			JSONArray matchingContacts = new JSONArray();
-			while (rs.next()) {
-				matchingContacts.add(rs.getString("name") + ":	" + rs.getString("user_id"));
-			}
-			PrintWriter pw = response.getWriter();
-			pw.print(matchingContacts);
-			pw.flush();
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			return true;
-		}
-		return false;
-	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -251,10 +288,7 @@ public class ManageContacts extends HttpServlet {
 
     	if (operation.equals("getName")){
     		boolean error = getName(request, response, userId);
-    		if (error) {
-        		response.sendRedirect("./Error.html");
-        		return;
-        	}
+    		return;
     	}
     	
     	
@@ -284,10 +318,8 @@ public class ManageContacts extends HttpServlet {
     	
     	boolean error = true;
     	
-    	if (operation.equals("redirect")) {
-    		request.getSession().setAttribute("user_id", userId);
-    		request.getSession().setAttribute("password", password);
-    		response.sendRedirect("addcontacts.jsp");
+    	if (operation.equals("getInfo")) {
+    		error = getContactInfo(request, response, userId);
     	}
     	else if (operation.equals("recent")) {
     		error = recentContacts(request, response, userId);
@@ -301,8 +333,8 @@ public class ManageContacts extends HttpServlet {
     	else if (operation.equals("search")) {
     		error = searchContacts(request, response, userId);
     	}
-    	else if (operation.equals("searchAppt")) {
-    		error = searchContactsAppt(request, response, userId);
+    	else if (operation.equals("delete")) {
+    		error = deleteContact(request, response, userId);
     	}
     	
     	if (error) {
